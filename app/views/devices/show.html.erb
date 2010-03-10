@@ -1,0 +1,76 @@
+<h1>显示设备信息</h1> 
+
+<% form_for @device, :url => { :action => "create" }do |f| %>
+  <%= error_messages_for :device ,:device_detail%>
+  <fieldset>
+    <legend>主要信息：</legend>
+    <table >
+
+      <tr>
+        <td>
+          <%= f.label :no,"编号" %><br />
+          <%= f.text_field :no,:size=>"20",:readonly=>"true" %>
+        </td>
+
+        <td>
+          <%= f.label :brand,"品牌" %><br />
+          <%= f.text_field :brand,:size=>"20",:readonly=>"true" %>
+        </td>
+        <td>
+          <%= f.label :sn,"序列号" %><br />
+          <%= f.text_field :sn ,:size=>"20",:readonly=>"true"%>
+        </td>
+        <td>
+          <%= f.label :device_type,"类型" %><br />
+          <%= f.text_field :device_type,:size=>"10",:readonly=>"true" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :model,"型号" %><br />
+          <%= f.text_field :model,:size=>"20",:readonly=>"true" %>
+        </td>
+        <td>
+          <%= f.label :admin,"使用人" %><br />
+          <%= f.text_field :admin,:size=>"20",:readonly=>"true" %>
+        </td>
+        <td>
+          <%= f.label :department,"使用部门" %><br />
+          <%= f.text_field :department,:size=>"20",:readonly=>"true"%>
+        </td>
+        <td>
+          <%= f.label :device_provider,"设备提供商" %><br />
+          <%= f.text_field :device_provider,:size=>"30",:readonly=>"true" %>
+        </td>
+      </tr>
+       <tr>
+         <td>
+          <%= f.label :status,"设备状态" %><br />
+          <%= f.text_field :status,:size=>"10",:readonly=>"true" %>
+        </td>
+        <td>
+          <%= f.label :start_using_time,"购置时间" %><br />
+          <%= f.text_field :start_using_time,:size=>"10",:readonly=>"true"  %>
+        </td>
+        <td>
+          <%= f.label :end_server_time,"维保到期日" %><br />
+          <%= f.text_field :end_server_time,:size=>"10",:readonly=>"true" %>
+        </td>
+        <td>
+          <%= f.label :service_provider,"维保厂商" %><br />
+          <%= f.text_field :service_provider,:size=>"30",:readonly=>"true" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+  <br/>
+
+  <br/>
+
+  <div id="device_detail">
+    <%= render :partial => @device_type+"_show",:object=>@device_detail %>
+  </div>
+<% end %>
+
+<%= link_to '修改', edit_device_path(@device) %> |
+<%= link_to '返回', devices_path %>

@@ -1,0 +1,28 @@
+<fieldset>
+  <legend>主要信息：</legend>
+  <b>编号:</b>
+  <%= h @device.no %> <br />
+  <b>品牌:</b>
+  <%=h  @device.brand %><br />
+  <b>序列号:</b>
+  <%= h @device.sn %><br />
+  <b>类型:</b>
+  <%= h @device.device_type %><br />
+  <b>型号:</b>
+  <%= h @device.model %><br />
+  <b>使用人:</b>
+  <%= h @device.admin %><br />
+  <b>使用部门:</b>
+  <%= h @device.department %><br />
+  <b>设备状态:</b>
+  <%= h @device.status %><br />
+</fieldset>
+
+
+<b>时间:</b>
+  <%= h @status_change.status_change_time %><br />
+  <b>原因:</b>
+  <%= h @status_change.reason %><br />
+<br/>
+
+<%= link_to '返回', devices_path %>

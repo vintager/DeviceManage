@@ -1,0 +1,28 @@
+<div class="tabel-list">
+
+  <table>
+    <tr>
+      <th>姓名</th>
+      <th>用户id</th>
+      <th>所属部门</th>
+       <th colspan="3">操作</th>
+    </tr>
+    <% for user in @users %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td><%=h user.name %></td>
+        <td><%=h user.userid %></td>
+        <td><%=h user.department %></td>
+        <td><%= link_to '显示', user %></td>
+        <td><%= link_to '修改', edit_user_path(user) %></td>
+        <td><%= link_to '删除', user, :confirm => '确定要删除?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="pagination">
+  <%= will_paginate %>
+</div>
+
+<%= link_to '新增用户', new_user_path %>|
+<%= link_to '查询用户',:controller => 'users' ,:action=>"get_query" %>

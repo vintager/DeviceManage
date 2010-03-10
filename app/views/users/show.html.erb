@@ -1,0 +1,18 @@
+<p>
+  <b>姓名:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>用户id:</b>
+  <%=h @user.userid %>
+</p>
+
+<p>
+  <b>所属部门:</b>
+  <%=h @user.department %>
+</p>
+
+
+<%= link_to '修改', edit_user_path(@user) %> |
+<%= link_to '返回', users_path %>

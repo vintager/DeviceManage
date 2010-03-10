@@ -1,0 +1,361 @@
+/* Global styles */
+
+h1 {
+    font:  150% sans-serif;
+    color: #226;
+    border-bottom: 3px dotted #77d;
+}
+
+
+
+
+
+/* An entry in the application catalog */
+#application {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+}
+
+#application  .entry {
+    overflow: auto;
+    margin-top: 1em;
+    border-bottom: 1px dotted #77d;
+}
+
+#application  .title {
+    font-size: 120%;
+    font-family: sans-serif;
+}
+
+#application .entry img {
+    width: 75px;
+    float: left;
+}
+
+
+#application .entry h3 {
+    margin-top: 0;
+    margin-bottom: 2px;
+    color: #227;
+}
+
+#application .entry p {
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+#application .entry .price-line {
+    clear: both;
+}
+
+#application .entry .add-to-cart {
+    position: relative;
+}
+
+#application .entry  .price {
+    color: #44a;
+    font-weight: bold;
+    margin-right: 2em;
+}
+
+/* The error box */
+
+.fieldWithErrors {
+    padding: 2px;
+    background-color: #EEFFEE;
+    display: inline;
+}
+
+.fieldWithErrors * {
+    background-color: red;
+}
+
+#errorExplanation {
+    width: 400px;
+    border: 2px solid red;
+    padding: 7px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    background-color: #c00;
+    color: #fff;
+}
+
+#errorExplanation p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+#errorExplanation ul li {
+    font-size: 12px;
+    list-style: square;
+}
+/* Styles for main page */
+#banner {
+    font: small-caps 40px/40px "Times New Roman", serif;
+    text-align: center;
+    width:800px;
+}
+
+#banner img {
+    float: left;
+}
+
+#welcome {
+    position:absolute;
+    top:20px;
+    right: 40px;
+    font: small-caps 15px/15px "Times New Roman", serif;
+    color: #282 ;
+    text-align: right;
+}
+
+#columns {
+    background: #141 ;
+}
+#main {
+    margin-left: 10px;
+    background-color: #f0f5ff;
+    padding-top: 5px;
+    padding-left: 5px;
+
+}
+
+#application .entry form, #application .entry form div {
+    Display: inline;
+}
+
+#notice {
+    border: 2px solid red;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #f0f0f0 ;
+    font: bold smaller sans-serif;
+}
+
+.side {
+    position:absolute;
+    left:20px;
+    top:140px;
+    bottom:10px;
+    width:200px;
+    overflow:auto;
+    background-color: #f0f5ff;
+}
+.content {
+    margin-left: 30px;
+    position:absolute;
+    left:195px;
+    top:140px;
+    bottom:10px;
+    right:10px;
+    overflow:auto;
+    background-color: #f0f5ff;
+    padding-top: 5px;
+}
+
+/*图形导航栏*/
+#nav {
+    padding:5px 0 0 1em;
+    margin:0;
+    list-style:none;
+    height:40px;
+    position:relative;
+    background:transparent url(pro_five_0c.gif) repeat-x left bottom;
+    font-size:11px;
+}
+#nav li {
+    float:left;
+    height:40px;
+    margin-right:1px;
+}
+#nav li a {
+    display:block;
+    float:left; height:40px;
+    line-height:35px; color:#333;
+    text-decoration:none;
+    font-family:arial, verdana, sans-serif;
+    font-weight:bold;
+    text-align:center;
+    padding:0 0 0 4px; cursor:pointer;
+    background:url(pro_five_0a.gif) no-repeat;
+}
+#nav li a b {
+    float:left;
+    display:block;
+    padding:0 16px 5px 12px;
+    background:url(pro_five_0b.gif) no-repeat right top;
+}
+#nav li.current a {
+    color:#000;
+    background:url(pro_five_2a.gif) no-repeat;
+}
+#nav li.current a b {
+    background:url(pro_five_2b.gif) no-repeat right top;
+}
+#nav li a:hover {
+    color:#000;
+    background: url(pro_five_1a.gif) no-repeat;
+}
+#nav li a:hover b {
+    background:url(pro_five_1b.gif) no-repeat right top;
+}
+#nav li.current a:hover {
+    color:#000;
+    background: url(pro_five_2a.gif) no-repeat;
+    cursor:default;
+}
+#nav li.current a:hover b {
+    background:url(pro_five_2b.gif) no-repeat right top;
+}
+/* Styles for order form */
+.application-form fieldset {
+    background-color: #ccccff;
+}
+
+.application-form legend {
+    color: #dfd ;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+    background-color: #6666ff;
+}
+
+.application-form label {
+    width: 5em;
+    float: left;
+    text-align: right;
+    padding-top: 0.2em;
+    margin-right: 0.1em;
+    display: block;
+}
+
+.application-form select, .depot-form textarea, .depot-form input {
+    margin-left: 0.5em;
+}
+
+.application-form .submit {
+    margin-left: 4em;
+}
+
+.application-form div {
+    margin: 0.5em 0;
+}
+
+.application-form label {
+    width: 5em;
+    float: left;
+    text-align: right;
+    padding-top: 0.2em;
+    margin-right: 0.1em;
+    display: block;
+}
+
+#readonly input{
+    readonly: expression(this.readOnly=true);
+
+    vertical-align: top;
+}
+
+.pagination {
+    padding: 3px;
+    margin: 3px;
+}
+
+.pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #AAAADD;
+
+    text-decoration: none; /**//* no underline */
+    color: #000099;
+}
+.pagination a:hover, div.pagination a:active {
+    border: 1px solid #000099;
+
+    color: #000;
+}
+.pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+
+    font-weight: bold;
+    background-color: #000099;
+    color: #FFF;
+}
+.pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+    color: #cccccc;
+}
+
+
+
+/* Styles for tabels/index */
+.tabel-list table{
+    border-collapse: collapse;
+    font-family: arial;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.tabel-list th,td{
+    border: 1px solid #aaa;
+}
+
+.tabel-list thead th{
+    border-bottom: 2px solid #3d580b;
+    background-color: #8fc629;
+    color: #fff;
+    padding: 10px 0px;
+}
+
+.tabel-list th{
+    background-color: #f2f4b9;
+}
+
+.tabel-list th.title{
+    background-color: #e3e685;
+}
+
+.tabel-list tfoot td{
+    border-width: 0px;
+    text-align: right;
+    font-size: 12px;
+    color: #777;
+}
+
+.tabel-list caption{
+    font-weight: bold;
+    padding: 6px 0px;
+    color: #3d580b;
+    font-size: 25px;
+}
+
+.tabel-list .list-actions {
+    font-size: x-small;
+    text-align:   right;
+    padding-left: 1em;
+}
+
+.tabel-list .list-line-even {
+}
+
+.tabel-list .list-line-odd {
+    background-color: #ccccff;
+}
+
+.sub{
+    
+    margin-left: 33px;
+}

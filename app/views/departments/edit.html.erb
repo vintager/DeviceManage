@@ -1,0 +1,24 @@
+<h1>Editing department</h1>
+
+<% form_for(@department) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "单位名称" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "上级单位" %><br />
+    <%= f.select :parent,parent_and_departments.names %>
+  </p>
+  <p>
+    <%= f.label "地址" %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.submit "修改" %>
+  </p>
+<% end %>
+
+<%= link_to '显示', @department %> |
+<%= link_to '返回', departments_path %>

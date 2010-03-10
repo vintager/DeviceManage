@@ -1,0 +1,27 @@
+<% form_for @department, :url => { :action => "query"}do |f| %>
+  <%= error_messages_for :department %>
+  <fieldset>
+    <legend>部门信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label "部门名称" %><br />
+          <%= f.text_field :name %>
+        </td>
+
+        <td>
+          <%= f.label "地址" %><br />
+          <%= f.text_field :address %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+  <br/>
+
+  <p>
+    <%= f.submit "查询" %>
+  </p>
+<% end %>
+
+
+<%= link_to '返回', departments_path %>

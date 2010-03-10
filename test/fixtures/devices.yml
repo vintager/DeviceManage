@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  no: 1
+  brand: MyString
+  sn: MyString
+  type: MyString
+  model: MyString
+  admin: MyString
+  department: MyString
+  status: MyString
+
+two:
+  no: 1
+  brand: MyString
+  sn: MyString
+  type: MyString
+  model: MyString
+  admin: MyString
+  department: MyString
+  status: MyString

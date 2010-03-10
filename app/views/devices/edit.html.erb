@@ -1,0 +1,78 @@
+<h1>修改设备信息</h1>
+  <% form_for(@device) do |f| %>
+    <%= error_messages_for :device ,:device_detail%>
+    <fieldset>
+      <legend>主要信息：</legend>
+      <table>
+        <tr>
+          <td>
+            <%= f.label :no,"编号" %><br />
+            <%= f.text_field :no, :size=>"20",:readonly=>"readonly" %>
+          </td>
+
+          <td>
+            <%= f.label :brand,"品牌" %><br />
+            <%= f.text_field :brand, :size=>"20"  %>
+          </td>
+          <td>
+            <%= f.label :sn,"序列号" %><br />
+            <%= f.text_field :sn, :size=>"20" %>
+          </td>
+          <td>
+            <%= f.label :device_type,"类型" %><br />
+            <%= f.text_field :device_type, :size=>"10", :readonly=>"readonly"  %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :model,"型号" %><br />
+            <%= f.text_field :model, :size=>"20" %>
+          </td>
+          <td>
+            <%= f.label :admin,"使用人" %><br />
+            <%= f.text_field :admin, :size=>"20" %>
+          </td>
+          <td>
+            <%= f.label :department,"使用部门" %><br />
+            <%= f.select :department,departments.names %>
+          </td>
+          <td>
+            <%= f.label :device_provider,"设备提供商" %><br />
+            <%= f.select :device_provider,@provider.names %>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :status,"设备状态" %><br />
+            <%= f.text_field :status,:size=>"10",:readonly=>"true" %>
+          </td>
+          <td>
+            <%= f.label :start_using_time,"购置时间" %><br />
+            <%= f.text_field :start_using_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()"  %>
+          </td>
+          <td>
+            <%= f.label :end_server_time,"维保到期日" %><br />
+            <%= f.text_field :end_server_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()" %>
+          </td>
+          <td>
+            <%= f.label :service_provider,"维保厂商" %><br />
+            <%= f.select :service_provider,@provider.names %>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <br/>
+
+    <div id="device_detail">
+      <%= render :partial => @device_type,:object=>@device_detail %>
+    </div>
+  <p>
+    <%= f.submit "修改" %>
+  </p>
+
+<% end %>
+
+<%= link_to '显示', @device %> |
+<%= link_to '返回', devices_path %>

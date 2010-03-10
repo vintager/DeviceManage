@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  device_id: 1
+  cpu: MyString
+  cpu_qty: 1
+  disk: 1
+  disk_qty: 1
+  nic: MyString
+  nic: MyString
+  nic_qty: 1
+  memo: MyText
+
+two:
+  device_id: 1
+  cpu: MyString
+  cpu_qty: 1
+  disk: 1
+  disk_qty: 1
+  nic: MyString
+  nic: MyString
+  nic_qty: 1
+  memo: MyText

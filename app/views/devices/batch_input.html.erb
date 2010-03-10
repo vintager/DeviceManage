@@ -1,0 +1,57 @@
+<h1>批量新增设备</h1>
+
+<% form_for @device, :url => { :action => "batch_keep_device" }do |f| %>
+  <%= error_messages_for :device ,:device_detail%>
+  <fieldset>
+    <legend>主要信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :brand,"品牌" %><br />
+          <%= f.text_field :brand,:size=>"20" %>
+        </td>
+        <td>
+          <%= f.label :model,"型号" %><br />
+          <%= f.text_field :model,:size=>"20" %>
+        </td>
+        <td>
+          <%= f.label :device_type,"类型" %><br />
+          <%= f.select :device_type,device_types.names %>
+          <%= observe_field :device_device_type,
+            :url=>{:action=>'select_type',:only_path=>false },
+            :with=>"device_type" %>
+        </td>
+        <td>
+          <%= f.label :device_provider,"设备提供商" %><br />
+          <%= f.select :device_provider,@provider.names %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <%= f.label :status,"设备状态" %><br />
+            <%= f.select :status,["未领用"] %>
+        <td>
+          <%= f.label :start_using_time,"购置时间" %><br />
+          <%= f.text_field :start_using_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()"  %>
+        </td>
+        <td>
+          <%= f.label :end_server_time,"维保到期日" %><br />
+          <%= f.text_field :end_server_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()" %>
+        </td>
+        <td>
+          <%= f.label :service_provider,"维保厂商" %><br />
+          <%= f.select :service_provider,@provider.names %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+  <br/>
+  <div id="device_detail">
+    <%= render :partial => "computer_detail", :object=>@device_detail %>
+  </div>
+
+  <p>
+    <%= f.submit "下一步" %>
+  </p>
+<% end %>
+<%= link_to '返回', devices_path %>

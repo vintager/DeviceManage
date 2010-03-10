@@ -1,0 +1,28 @@
+<p>
+  <b>公司名称:</b>
+  <%=h @provider.name %>
+</p>
+
+<p>
+  <b>公司地址:</b>
+  <%=h @provider.addr %>
+</p>
+
+<p>
+  <b>联系人:</b>
+  <%=h @provider.contact %>
+</p>
+
+<p>
+  <b>联系电话:</b>
+  <%=h @provider.phone %>
+</p>
+
+<p>
+  <b>评级:</b>
+  <%=h @provider.rank %>
+</p>
+
+
+<%= link_to '编辑', edit_provider_path(@provider) %> |
+<%= link_to '返回', providers_path %>

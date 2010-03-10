@@ -1,0 +1,31 @@
+<% form_for @user, :url => { :action => "query"}do |f| %>
+  <%= error_messages_for :user %>
+  <fieldset>
+    <legend>用户信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :name,"姓名" %><br />
+          <%= f.text_field :name %>
+        </td>
+
+        <td>
+          <%= f.label :userid,"用户id"  %><br />
+          <%= f.text_field :userid %>
+        </td>
+
+        <td>
+          <%= f.label :department,"使用部门" %><br />
+          <%= f.select :department, [""]+departments.names %>
+        </td>
+
+      </tr>
+    </table>
+  </fieldset>
+  <br/>
+
+  <p>
+    <%= f.submit "查询" %>
+  </p>
+<% end %>
+<%= link_to '返回', users_path %>

@@ -1,0 +1,31 @@
+<div class="tabel-list">
+  <table>
+    <tr>
+      <th>公司名称</th>
+      <th>地址</th>
+      <th>联系人</th>
+      <th>联系电话</th>
+      <th>评级</th>
+       <th colspan="3">操作</th>
+    </tr>
+
+    <% for provider in @providers %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td><%=h provider.name %></td>
+        <td><%=h provider.addr %></td>
+        <td><%=h provider.contact %></td>
+        <td><%=h provider.phone %></td>
+        <td><%=h provider.rank %></td>
+        <td><%= link_to '显示', provider %></td>
+        <td><%= link_to '修改', edit_provider_path(provider) %></td>
+        <td><%= link_to '删除', provider, :confirm => '确定要删除?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="pagination">
+  <%= will_paginate %>
+</div>
+
+<%= link_to '新增厂商', new_provider_path %>|
+<%= link_to '查询厂商',:controller => 'providers' ,:action=>"get_query" %>

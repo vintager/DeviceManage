@@ -1,0 +1,30 @@
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name,"姓名" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :userid,"用户id"  %><br />
+    <%= f.text_field :userid %>
+  </p>
+  <p>
+    <%= f.label :password,"密码"  %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label 'Confirm',"确认密码"  %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :department,"所属部门"  %><br />
+    <%= f.select :department, departments.names %>
+  </p>
+  <p>
+    <%= f.submit "修改" %>
+  </p>
+<% end %>
+
+<%= link_to '显示', @user %> |
+<%= link_to '返回', users_path %>

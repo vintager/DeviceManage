@@ -1,0 +1,25 @@
+<% form_for(@provider) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name,"公司名称" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :addr,"公司地址" %><br />
+    <%= f.text_field :addr %>
+  </p>
+  <p>
+    <%= f.label :contact,"联系人" %><br />
+    <%= f.text_field :contact %>
+  </p>
+  <p>
+    <%= f.label :phone ,"联系电话"%><br />
+    <%= f.text_field :phone %>
+  </p>
+
+  <p>
+    <%= f.submit "创建" %>
+  </p>
+<% end %>
+
+<%= link_to '返回', providers_path %>

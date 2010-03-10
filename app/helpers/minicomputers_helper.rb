@@ -1,0 +1,2 @@
+module MinicomputersHelper
+end

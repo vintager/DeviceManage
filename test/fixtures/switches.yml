@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  device_id: 1
+  port: 1
+  layer: 1
+  speed: 1
+  back_speed: 1
+  memo: MyText
+
+two:
+  device_id: 1
+  port: 1
+  layer: 1
+  speed: 1
+  back_speed: 1
+  memo: MyText

@@ -1,0 +1,23 @@
+<h1>New department</h1>
+
+<% form_for(@department) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "部门名称" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "上级部门" %><br />
+    <%= f.select :parent, parent_and_departments.names %>
+  </p>
+  <p>
+    <%= f.label "地址" %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.submit "新建" %>
+  </p>
+<% end %>
+
+<%= link_to '返回', departments_path %>

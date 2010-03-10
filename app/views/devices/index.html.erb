@@ -1,0 +1,53 @@
+<div class="side">
+  <script>
+    if (document.getElementById) {
+      var treeroot = new WebFXTree("root");
+<%= revtree(Department.find_by_name(department),"treeroot")%>
+    document.write(treeroot);
+  }
+  </script>
+</div>
+<div class="content">
+  <div class="tabel-list">
+    <table >
+      <tr>
+        <th>编号</th>
+        <th>品牌</th>
+        <th>序列号</th>
+        <th>类型</th>
+        <th>型号</th>
+        <th>使用人</th>
+        <th>使用部门</th>
+        <th>状态</th>
+        <th>购置时间</th>
+        <th>维保到期日</th>
+        <th colspan="4">操作</th>
+      </tr>
+      <% for device in @devices %>
+
+        <%= error_messages_for :device %>
+        <tr>
+          <td><%=h device.no %></td>
+          <td><%=h device.brand %></td>
+          <td><%=h device.sn %></td>
+          <td><%=h device.device_type %></td>
+          <td><%=h device.model %></td>
+          <td><%=h device.admin %></td>
+          <td><%=h device.department %></td>
+          <td><%=h device.status %></td>
+          <td><%=h device.start_using_time %></td>
+          <td><%=h device.end_server_time %></td>
+          <td><%= link_to '显示', device %></td>
+          <td><%= link_to '修改', edit_device_path(device) %></td>
+          <td><%= link_to '删除', device, :confirm => '确定要删除?', :method => :delete %></td>
+          <td><%= link_to '改变状态',change_status_device_path(device) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="pagination">
+    <%= will_paginate %>
+  </div>
+  <%= link_to '增加设备', new_device_path %>|
+  <%= link_to '查询设备',:controller => 'devices' ,:action=>"get_query" %>
+</div>

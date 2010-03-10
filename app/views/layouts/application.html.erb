@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html>
+  <head>
+    <title>设备管理系统</title>
+    <%= stylesheet_link_tag "devicemanage" , :media => "all" %>
+    <%= stylesheet_link_tag "xtree" , :media => "all" %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "xtree" %>
+    <%= javascript_include_tag "highlight" %>
+    <%= javascript_include_tag "My97DatePicker/WdatePicker.js" %>
+  </head>
+  <body id="application" >
+    <div id="banner">
+      <%= image_tag("logo.png" ) %><br />
+      <%= @page_title || "设备管理系统" %>
+    </div>
+    <div id="welcome">
+      <% if session[:user_id] %>
+        欢迎你：<%=current_user %> !<br />
+        <%= link_to '退出', :controller => 'admin', :action => 'logout' %>
+      <% else %>
+        您还没有登录！
+      <% end %>
+    </div>
+    <ul id="nav">
+      <li ><%= link_to '<b>设备管理</b>', :controller => 'devices' %></li>
+      <li ><%= link_to '<b>部门管理</b>', {:controller => 'departments'}%></li>
+      <li><%= link_to '<b>人员管理</b>', :controller => 'users' %></li>
+      <li><%= link_to '<b>厂商管理</b>', :controller => 'providers' %></li>
+      <li><%= link_to '<b>维修记录</b>', :controller => 'maintain' %></li>
+      <li><%= link_to '<b>报表统计</b>', :controller => 'report' %></li>
+      <li><%= link_to '<b>系统管理</b>', :controller => 'system' %></li>
+    </ul>
+    <script language="javascript">setPage()</script>
+    <div id="main">
+      <% if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
+      <%= yield :layout %>
+    </div>
+  </body>
+</html>

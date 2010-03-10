@@ -1,0 +1,26 @@
+To build the guides:
+
+* Install source-highlighter (http://www.gnu.org/software/src-highlite/source-highlight.html)
+* Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
+* Run `rake guides` from the railties directory
+
+
+必须解决的问题：
+1.设备维修记录                                                                    已经完成
+2.统计报表
+3.厂商评级
+
+还需完善的问题：
+1.设备查询页面中，使用时间段来查询设备
+2.批量新增时，数据的校验
+3.批量新增时，使用浏览器回退按钮后设备类型与下端的设备详细信息不匹配
+5.排序
+6.厂商电话号码校验                                                                 有点小问题，不影响使用
+7.错误信息
+9.批量新增时无法输入各个单位设备数量
+
+
+已经解决的问题
+10.查询都有问题,好像是和分页有关系                                                    已经解决
+8.维修记录分页显示                                                                 已经解决
+4.分页显示                                                                        已经解决

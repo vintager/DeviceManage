@@ -1,0 +1,24 @@
+<div class="tabel-list">
+  <% form_tag :action=>"batch_create", :method => :put do %>
+    <table>
+      <tr>
+        <th></th>
+        <th>部门名称</th>
+        <th>上级部门</th>
+        <th>地址</th>
+      </tr>
+      <% for department in departments %>
+        <tr>
+          <td><%= check_box_tag "department_ids[]", department.id %>  </td>
+          <td><%=h department.name %></td>
+          <td><%=h department.parent.name %></td>
+          <td><%=h department.address %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= submit_tag "确定" %>
+  <% end %>
+</div>
+<%= link_to '上一步', :action=>"batch_input" %>
+
+

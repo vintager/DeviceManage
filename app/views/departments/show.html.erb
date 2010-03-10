@@ -1,0 +1,17 @@
+<p>
+  <b>单位名称:</b>
+  <%=h @department.name %>
+</p>
+
+<p>
+  <b>上级单位:</b>
+  <%=h @department.parent.name %>
+</p>
+
+<p>
+  <b>地址:</b>
+  <%=h @department.address %>
+</p>
+
+<%= link_to '修改', edit_department_path(@department) %> |
+<%= link_to '返回', departments_path %>

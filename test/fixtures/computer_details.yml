@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  device_id: 1
+  cpu: MyString
+  mem: MyString
+  display: MyString
+  disk: MyString
+
+two:
+  device_id: 1
+  cpu: MyString
+  mem: MyString
+  display: MyString
+  disk: MyString

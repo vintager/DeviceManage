@@ -1,0 +1,27 @@
+<div class="tabel-list">
+  <table >
+    <tr>
+      <th>部门名称</th>
+      <th>上级部门</th>
+      <th>地址</th>
+      <th colspan="3">操作</th>
+    </tr>
+
+    <% for department in @departments %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td><%=h department.name %></td>
+        <td><%=h department.parent.name %></td>
+        <td><%=h department.address %></td>
+        <td><%= link_to '显示', department %></td>
+        <td><%= link_to '修改', edit_department_path(department) %></td>
+        <td><%= link_to '删除', department, :confirm => '确定要删除?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="pagination">
+  <%= will_paginate %>
+</div>
+
+<%= link_to '新建部门', new_department_path %>|
+<%= link_to '查询部门',:controller => 'departments' ,:action=>"get_query" %>
