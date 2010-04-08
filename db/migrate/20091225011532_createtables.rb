@@ -41,7 +41,7 @@ class Createtables < ActiveRecord::Migration
       t.string   "detail_type"
       t.string   "device_provider"
       t.string   "service_provider"
-      t.integer  "state_change_id"
+      t.integer  "status_change_id"
       t.datetime "created_at"
       t.datetime "updated_at"
     end

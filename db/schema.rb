@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091225011532) do
+ActiveRecord::Schema.define(:version => 20100408025859) do
 
   create_table "computer_details", :force => true do |t|
     t.string   "cpu"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20091225011532) do
     t.string   "detail_type"
     t.string   "device_provider"
     t.string   "service_provider"
-    t.integer  "state_change_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,9 +65,10 @@ ActiveRecord::Schema.define(:version => 20091225011532) do
     t.string   "addr"
     t.string   "contact"
     t.string   "phone"
-    t.integer  "rank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fault_rate"
+    t.string   "fix_on_time_rate"
   end
 
   create_table "status_changes", :force => true do |t|
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20091225011532) do
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "service_provider"
+    t.string   "department"
   end
 
   create_table "switches", :force => true do |t|

@@ -5,7 +5,8 @@
       <th>地址</th>
       <th>联系人</th>
       <th>联系电话</th>
-      <th>评级</th>
+      <th>设备故障率</th>
+      <th>维修及时率</th>
        <th colspan="3">操作</th>
     </tr>
 
@@ -15,7 +16,8 @@
         <td><%=h provider.addr %></td>
         <td><%=h provider.contact %></td>
         <td><%=h provider.phone %></td>
-        <td><%=h provider.rank %></td>
+        <td><%=h provider.fault_rate %></td>
+        <td><%=h provider.fix_on_time_rate %></td>
         <td><%= link_to '显示', provider %></td>
         <td><%= link_to '修改', edit_provider_path(provider) %></td>
         <td><%= link_to '删除', provider, :confirm => '确定要删除?', :method => :delete %></td>

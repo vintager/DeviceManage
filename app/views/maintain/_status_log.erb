@@ -3,12 +3,16 @@
     <tr>
       <th>设备状态</th>
       <th>维修/修复时间</th>
+      <th>部门</th>
+      <th>维修厂商</th>
       <th>维修/修复原因/情况</th>
     </tr>
     <% @device_status_log.each do |log| %>
       <tr>
         <td><%=h log.status %></td>
         <td><%=h log.status_change_time %></td>
+        <td><%=h log.department %></td>
+        <td><%=h log.service_provider %></td>
         <td><%=h log.reason %></td>
       </tr>
     <% end %>

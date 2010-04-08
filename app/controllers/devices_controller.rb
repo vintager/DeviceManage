@@ -122,19 +122,43 @@ class DevicesController < ApplicationController
   # POST /devices/1.xml
   def update_status
     find_detail
-    params[:device][:status] = params[:status_change][:status]
-    @device.attributes = params[:device]
-    
-    @status_change = StatusChange.new(params[:status_change])
-    @status_change.device_id=@device.id
-    
-    unless [@device, @status_change].map(&:valid?).include?(false)
-      @device.update_attributes(params[:device])
-      @status_change.save
-      flash[:notice] = '新设备状态已经修改成功！'
-      redirect_to :id=>@device, :action=>"show_status_change"
+    #如果更改状态的时间比数据库中该设备最后更改的时间还早的话，说明日期有错误
+    last_record=StatusChange.find_by_device_id(@device.id,:order=>"status_change_time DESC")
+
+    if last_record.blank?
+      max_date=Date.parse("1970-1-1") 
+      pro_status = ""
+    else 
+      max_date=last_record.status_change_time
+      pro_status = last_record.status
+    end
+
+    if Date.parse(params[:status_change][:status_change_time])>max_date
+      if params[:status_change][:status]=="维修" && pro_status!="故障"
+        flash[:notice] = '有故障的设备才能维修！'
+        redirect_to :action=>:change_status
+      else
+        params[:device][:status] = params[:status_change][:status]
+        @device.attributes = params[:device]
+
+        @status_change = StatusChange.new(params[:status_change])
+        @status_change.device_id = @device.id
+        @status_change.service_provider = @device.service_provider
+        @status_change.department = @device.department
+
+        unless [@device, @status_change].map(&:valid?).include?(false)
+          @device.update_attributes(params[:device])
+          @status_change.save
+          flash[:notice] = '新设备状态已经修改成功！'
+          redirect_to :id=>@device, :action=>"show_status_change"
+        else
+          render :action => "change_status"
+        end
+      end
     else
-      render :action => "change_status"
+      flash[:notice] = '日期错误！'
+      redirect_to :action=>:change_status
+      
     end
   end
 
@@ -183,26 +207,17 @@ class DevicesController < ApplicationController
   end
 
   def batch_keep_device
-    p params
     @device_type=DeviceType.find_by_name(params[:device][:device_type]).table
-    p @device_type
     session[:device_detail]=params[@device_type]
-    p session[:device_detail]
     session[:batch_device]=params[:device]
-    p  session[:batch_device]
     render :action => "select_departments"
   end
 
   def batch_create
     @devices=[]
     params[:department_ids].each do |id|
-      p id
-      #      p session[:batch_device]
       session[:batch_device][:no] = device_no
-      p Department.find(id).name
       session[:batch_device][:department]=Department.find(id).name
-      #      p session[:batch_device]
-      #      p session[:device_detail]
       @device = Device.new(session[:batch_device])
       
       #根据下拉列表中的设备类型创建一个设备详情表

@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
   # GET /providers.xml
   def index
     @providers = Provider.paginate(:per_page => 20, :page => params[:page])
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @providers }
@@ -98,4 +98,56 @@ class ProvidersController < ApplicationController
 
     render :action => "index"
   end
+
+  def get_fault_rate(provider)
+    #统计该厂商发生过故障的设备数量
+    fault_count=Device.count(:joins=>"INNER JOIN status_changes on status_changes.device_id = devices.id",
+      :select=>"device_id",
+      :distinct=>"devices.id",
+      :conditions=>["device_provider = ? and status_changes.status=?",provider,"故障"])
+    #统计该厂商提供的所有设备总数
+    device_count=Device.find_all_by_device_provider(provider).size
+    #计算该厂商设备故障率
+    device_count!=0 ? fault_count.to_f/device_count : "-"
+  end
+
+  def get_fix_on_time_rate(provider)
+    #统计该厂商维修过的设备次数
+    fix_log = StatusChange.find_all_by_service_provider_and_status(provider,"维修",:order=>:status_change_time)
+    status_log = StatusChange.find_all_by_service_provider(provider,:order=>:status_change_time)
+    fix_on_time=0
+    if fix_log.size>0
+      fix_log.each do |item|
+        status_log.each do |i|
+          if (i.status_change_time >= item.status_change_time) && (i.id!=item.id) && (i.device_id==item.device_id) 
+            fix_on_time += 1 if (i.status_change_time-item.status_change_time).to_i < FIX_TIME_LIMIT
+            break;
+          end
+        end
+      end
+      fix_on_time/fix_log.size.to_f
+    else
+      "-"
+    end
+  end
+
+  def rank
+    providers = Provider.find(:all)
+    providers.each do |provider|
+      rate = get_fault_rate(provider.name)
+      provider.fault_rate = in_percent(rate)
+      rate = get_fix_on_time_rate(provider.name)
+      provider.fix_on_time_rate = in_percent(rate)
+
+      provider.save
+    end
+
+    redirect_to :action => "index"
+  end
+
+  private
+  def in_percent(rate)
+    rate.kind_of?(Numeric) ? sprintf("%.2f%",rate*100) : "-"
+  end
+  
 end

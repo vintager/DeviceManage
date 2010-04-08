@@ -6,6 +6,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+FIX_TIME_LIMIT = 5
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -78,3 +79,4 @@ require "rubygems"
 #require "ruport"
 #require "ruport/util"
 #require "ruport/acts_as_reportable"
+

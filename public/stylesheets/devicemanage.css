@@ -356,6 +356,13 @@ h1 {
 }
 
 .sub{
-    
+
     margin-left: 33px;
+}
+
+.table_name {
+    font:  150% sans-serif;
+    color: #226;
+    margin-bottom: 10px;
+    margin-left: 400px;
 }

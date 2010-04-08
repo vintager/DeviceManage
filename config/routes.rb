@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :providers,
-    :collection => { :get_query => :get  }
+    :collection => { :get_query => :get,
+    :rank => :get  }
 
   map.resources :minicomputers
 
