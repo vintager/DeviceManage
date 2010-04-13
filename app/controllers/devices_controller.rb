@@ -194,23 +194,29 @@ class DevicesController < ApplicationController
   end
 
   def batch_input
-    @device = Device.new
-    @provider=Provider.find(:all)
-
-    #设备详情
-    @device_detail=ComputerDetail.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @device }
-    end
+    clear_batch_session
+    
+    batch_data
   end
 
   def batch_keep_device
-    @device_type=DeviceType.find_by_name(params[:device][:device_type]).table
-    session[:device_detail]=params[@device_type]
+    @device_type = session[:device_type] = DeviceType.find_by_name(params[:device][:device_type]).table
+    @device=Device.new(params[:device])
+    @device.batch=true
+
+    session[:device_detail]=params[session[:device_type]]
     session[:batch_device]=params[:device]
-    render :action => "select_departments"
+    #根据下拉列表中的设备类型创建一个设备详情表
+    @device_detail = Object.const_get(session[:device_type].classify).new(session[:device_detail])
+
+
+    unless [@device, @device_detail].map(&:valid?).include?(false)
+      render :action => "select_departments"
+    else
+      @provider=Provider.find(:all)
+      render  :action => :batch_input
+    end
+
   end
 
   def batch_create
@@ -219,21 +225,35 @@ class DevicesController < ApplicationController
       session[:batch_device][:no] = device_no
       session[:batch_device][:department]=Department.find(id).name
       @device = Device.new(session[:batch_device])
+      @device.batch=true
       
       #根据下拉列表中的设备类型创建一个设备详情表
-      @device_type=DeviceType.find_by_name(session[:batch_device][:device_type]).table
-      #      p @device_type
-      @device_detail = Object.const_get(@device_type.classify).new(session[:device_detail])
+      @device_detail = Object.const_get(session[:device_type].classify).new(session[:device_detail])
       
       @device.detail = @device_detail
-      @device.save!
-      @devices<<@device
+      
+      qty = params["qty_#{id}"].to_i
+      qty.times{|i| @device.save! }
+        
+      @devices<<[@device,qty]
     end
-    session[:batch_device]=nil
+    
+    clear_batch_session
 
     @devices = array_paginate(@devices, 20)
     flash[:notice] = '批量增加设备成功！'
     render :action => "batch_show"
+  end
+
+  def batch_data
+    @device = Device.new(session[:batch_device])||Device.new
+    @provider=Provider.find(:all)
+
+    #设备详情
+    @device_detail = session[:device_type] == nil ? ComputerDetail.new : Object.const_get(session[:device_type].classify).new(session[:device_detail])
+    @device_type = session[:device_type] || "computer_detail"
+
+    render  :action => :batch_input
   end
   
   private
@@ -258,6 +278,14 @@ class DevicesController < ApplicationController
     else
       1
     end
+  end
+
+  
+  
+  def clear_batch_session
+    session[:batch_device]=nil
+    session[:device_detail]=nil
+    session[:device_type]=nil
   end
 end
 

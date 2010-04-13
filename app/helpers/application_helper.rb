@@ -54,5 +54,6 @@ module ApplicationHelper
   def device_types
     DeviceType.find(:all).find_all{ |i| i.parent_id != nil }
   end
+
 end
 

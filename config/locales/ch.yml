@@ -1,0 +1,58 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ch:
+  activerecord:
+    models:
+#      device: "设备"
+
+    attributes:
+      device:
+        no: "编号"
+        brand: "品牌"
+        sn: "序列号"
+        device_type: "类型"
+        model: "型号"
+        admin: "使用人"
+        department: "使用部门"
+        start_using_time: "购置时间"
+        end_server_time: "维保到期日"
+        status: "设备状态"
+        device_provider: "设备提供商"
+        service_provider: "维保厂商"
+      computer_detail:
+        cpu: "CPU"
+        cpu_qty: "CPU个数"
+        disk: "磁盘"
+        disk_qty: "磁盘个数"
+        nic: "网卡"
+        nic_qty: "网卡个数"
+        mem: "内存大小"
+        memo: "备注"
+        display: "显示器"
+    errors:
+      template:
+        body: "以下字段有错误："
+        header:
+          one: "一共存在 1 个错误"
+          other: "一共存在 {{count}} 个错误"
+      messages:
+        greater_than_or_equal_to: "必须大于或者等于{{count}}"
+        equal_to: "必须等于{{count}}"
+        empty: "不能为空"
+        wrong_lengActiveRecord::Errors.default_error_messagesth: "长度错误 (应该是{{count}}个字符)"
+        accepted: "必须是可以接收的值"
+        less_than: "必须小于{{count}}"
+        inclusion: "不再列表中"
+        too_short: "太短了(最少应为{{count}}个字符)"
+        less_than_or_equal_to: "必须小于或者等于{{count}}"
+        too_long: "太长了(最大应为{{count}}个字符)"
+        odd: "必须是奇数"
+        ActiveRecord::Errors.default_erActiveRecord::Errorsror_messages[:greater_than: "必须大于{{count}}"
+        exclusion: "是保留字"
+        invalid: "是无效值"
+        confirmation: "两者不匹配"
+        not_a_number: "必须是数字"
+        taken: "已经存在"
+        even: "必须是偶数"
+        blank: "不能为空"

@@ -34,7 +34,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection =>
     { :select_type=>:get,
     :get_query => :get,
-    :batch_input => :get
+    :batch_input => :get,
+    :batch_data => :get
   }
 
   # The priority is based upon order of creation: first created -> highest priority.

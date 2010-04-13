@@ -8,18 +8,6 @@ function openWin(obj)
     this.location=str;
 }
 
-//function showDialog(url)
-//{
-//    var val= showModalDialog(url,"true", "dialogWidth:450px;dialogHeight:300px;dialogLeft:100px;dialogTop:350px;status:no;help:no;location:no;resize=>no");
-//    if(!val)
-//    {
-//        return;
-//    }
-//    else
-//    {
-//        document.all.returnvalue.value=val;
-//    }
-//}
 function showDetails(item_id,log_id){
     var oa = document.getElementById(item_id);
     var ob = document.getElementById(log_id);
@@ -32,19 +20,3 @@ function showDetails(item_id,log_id){
     }
     return false;
 }
-//function   showDialog(url)
-//{
-//    if(   document.all   ) //IE
-//    {
-//        feature="dialogWidth:550px;dialogHeight:300px;dialogLeft:100px;dialogTop:350px;status:no;help:no";
-//        window.showModalDialog(url,null,feature);
-//    }
-//    else
-//    {
-//        //modelessDialog可以将modal换成dialog=yes
-//        //        feature ="width=550,height=300,menubar=no,toolbar=no,location=no,scrollbars=no,status=no,modal=yes";
-//        //        window.open(url,null,feature);
-//        feature="dialogWidth:550px;dialogHeight:300px;dialogLeft:100px;dialogTop:350px;status:no;help:no";
-//        window.showModalDialog(url,null,feature);
-//    }
-//}

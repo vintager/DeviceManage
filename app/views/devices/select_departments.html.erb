@@ -6,6 +6,7 @@
         <th>部门名称</th>
         <th>上级部门</th>
         <th>地址</th>
+        <th>数量</th>
       </tr>
       <% for department in departments %>
         <tr>
@@ -13,12 +14,13 @@
           <td><%=h department.name %></td>
           <td><%=h department.parent.name %></td>
           <td><%=h department.address %></td>
+          <td><%= text_field_tag "qty_#{department.id}",1,:size=>"5" %></td>
         </tr>
       <% end %>
     </table>
     <%= submit_tag "确定" %>
   <% end %>
 </div>
-<%= link_to '上一步', :action=>"batch_input" %>
+<%= link_to '上一步', :action=>"batch_data" %>
 
 
