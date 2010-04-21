@@ -15,16 +15,6 @@ class Createtables < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
     end
-    
-    create_table "users", :force => true do |t|
-      t.string   "name"
-      t.string   "userid"
-      t.string   "hashed_password"
-      t.string   "department"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-      t.string   "salt"
-    end
 
     create_table "devices", :force => true do |t|
       t.integer  "no"
@@ -41,34 +31,27 @@ class Createtables < ActiveRecord::Migration
       t.string   "detail_type"
       t.string   "device_provider"
       t.string   "service_provider"
-      t.integer  "status_change_id"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
 
-    create_table "computer_details", :force => true do |t|
-      t.string   "cpu"
-      t.integer  "cpu_qty"
-      t.integer  "disk"
-      t.integer  "disk_qty"
-      t.string   "nic"
-      t.integer  "nic_qty"
-      t.integer  "mem"
-      t.text     "memo"
-      t.text "display"
+    create_table "employees", :force => true do |t|
+      t.string   "name"
+      t.integer  "manager_id"
       t.datetime "created_at"
       t.datetime "updated_at"
-      
     end
+
 
     create_table "providers", :force => true do |t|
       t.string   "name"
       t.string   "addr"
       t.string   "contact"
       t.string   "phone"
-      t.integer  "rank"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "fault_rate"
+      t.string   "fix_on_time_rate"
     end
 
     create_table "status_changes", :force => true do |t|
@@ -78,29 +61,32 @@ class Createtables < ActiveRecord::Migration
       t.text     "reason"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "service_provider"
+      t.string   "department"
     end
 
-    create_table "switches", :force => true do |t|
-      t.integer  "port"
-      t.integer  "layer"
-      t.integer  "speed"
-      t.integer  "back_speed"
-      t.text     "memo"
+
+
+    create_table "users", :force => true do |t|
+      t.string   "name"
+      t.string   "userid"
+      t.string   "hashed_password"
+      t.string   "department"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "salt"
     end
 
+    
   end
 
   def self.down
     drop_table :departments
     drop_table :device_types
-    drop_table :users
-    drop_table :devices
-    drop_table :computer_details
+    drop_table :employees
     drop_table :providers
     drop_table :status_changes
-    drop_table :switches
-
+    drop_table :users
+    drop_table :devices
   end
 end

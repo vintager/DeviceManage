@@ -1,1 +1,1 @@
-page.replace_html("device_detail",:partial => @device_type,:object=>@device_detail)
+page.replace_html("device_detail",:partial => "devices\/sub_type\/#{@device_type}",:object=>@device_detail)

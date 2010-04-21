@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  before_filter :authorize, :except => :login
+#  before_filter :authorize, :except => :login
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -47,15 +47,13 @@ class ApplicationController < ActionController::Base
 
   #基于will_paginate插件的数组分页方法
   def array_paginate(array,per_page)
-    d = array
-
     params[:page]||=1
     return WillPaginate::Collection.create(params[:page], per_page) do |pager|
-      result = d[pager.offset,pager.per_page]
+      result = array[pager.offset,pager.per_page]
       pager.replace(result)
 
       unless pager.total_entries
-        pager.total_entries = d.count
+        pager.total_entries = array.size
       end
     end
   end
@@ -63,7 +61,7 @@ class ApplicationController < ActionController::Base
   protected
   def authorize
     unless User.find_by_id(session[:user_id])
-      flash[:notice] = "Please log in"
+      flash[:notice] = "您还没有登录，请先登录！"
       redirect_to :controller => 'admin', :action => 'login'
     end
   end

@@ -1,0 +1,55 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :modularization,'是否模块化' %><br />
+          <%= f.select :modularization, ["是","否"],:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :total_backplane_bandwidth, "背板带宽(Mbps)"%><br />
+          <%= f.text_field :total_backplane_bandwidth ,:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :mem, "内存(MB)"%><br />
+          <%= f.text_field :mem,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :wan_port_qty,'广域网口数量(个)' %><br />
+          <%= f.text_field :wan_port_qty ,:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :lan_port_qty, "局域网口数量(个)"%><br />
+          <%= f.text_field :lan_port_qty ,:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :power_module_qty, "电源模块数量(个)"%><br />
+          <%= f.text_field :power_module_qty,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :slot_qty, "插槽数量(个)"%><br />
+          <%= f.text_field :slot_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :vpn,'是否支持VPN' %><br />
+          <%= f.select :vpn, ["是","否"],:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :qos,'是否支持QoS' %><br />
+          <%= f.select :qos, ["是","否"],:size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

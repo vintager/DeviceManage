@@ -44,7 +44,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.save
-        flash[:notice] = 'Provider was successfully created.'
+        flash[:notice] = '厂商成功创建！'
         format.html { redirect_to(@provider) }
         format.xml  { render :xml => @provider, :status => :created, :location => @provider }
       else
@@ -61,7 +61,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.update_attributes(params[:provider])
-        flash[:notice] = 'Provider was successfully updated.'
+        flash[:notice] = '厂商信息修改成功！'
         format.html { redirect_to(@provider) }
         format.xml  { head :ok }
       else

@@ -66,7 +66,7 @@
     <br/>
 
     <div id="device_detail">
-      <%= render :partial => @device_type,:object=>@device_detail %>
+      <%= render :partial =>  "devices\/sub_type\/#{@device_type}",:object=>@device_detail %>
     </div>
   <p>
     <%= f.submit "修改" %>

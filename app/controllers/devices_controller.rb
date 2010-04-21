@@ -34,6 +34,7 @@ class DevicesController < ApplicationController
 
     #设备详情
     @device_detail=ComputerDetail.new
+    @device_type="computer_detail"
     
     respond_to do |format|
       format.html # new.html.erb
@@ -74,11 +75,12 @@ class DevicesController < ApplicationController
     find_detail
     
     @device.attributes = params[:device]
-    @device_detail.attributes = params[:device_type]
+    @device_type=DeviceType.find_by_name(params[:device][:device_type]).table
+    @device_detail.attributes = params[@device_type]
     unless [@device, @device_detail].map(&:valid?).include?(false)
-      @device.update_attributes(params[:device])
-      @device_detail.update_attributes(params[:device_type])
-      flash[:notice] = '新设备已经修改成功！'
+      @device.update_attributes!(params[:device])
+      @device_detail.update_attributes!(params[@device_type])
+      flash[:notice] = '设备参数修改成功！'
       redirect_to(@device)
     else
       @provider=Provider.find(:all)
@@ -174,23 +176,76 @@ class DevicesController < ApplicationController
 
   def get_query
     @device = Device.new
+    @time_range = Date.new
   end
   
   def query
-    conds = Hash.new
-    params[:device].each do |key, value|
-      conds.store(key, value) unless value.blank?
+    conds = []
+    if params[:device][:department].blank?
+      conds<<"department in (?)"
+      conds<<departments.names 
+    else
+      conds<<"department = ?"
+      params[:device][:department]
     end
-    conds["department"]=departments.names if conds["department"].blank?
+    
+    params[:device].each do |key, value|
+      unless value.blank?
+        conds[0]=conds[0]+" and #{key} = ?"
+        conds<<value
+      end
+    end
+    if !params[:date][:start_using_time_from].blank?
+      conds[0] = conds[0]+" and start_using_time >= ?"
+      conds << Date.parse(params[:date][:start_using_time_from])
+    end
+    if !params[:date][:start_using_time_from].blank?
+      conds[0] = conds[0]+" and start_using_time <= ?"
+      conds << Date.parse(params[:date][:start_using_time_to])
+    end
+    if !params[:date][:start_using_time_from].blank?
+      conds[0] = conds[0]+" and end_server_time >= ?"
+      conds << Date.parse(params[:date][:end_server_time_from])
+    end
+    if !params[:date][:start_using_time_from].blank?
+      conds[0] = conds[0]+" and end_server_time >= ?"
+      conds << Date.parse(params[:date][:end_server_time_to])
+    end
     @devices = Device.paginate(:all, :conditions=>conds,:per_page => 20, :page => params[:page])
     
     render :action => "index"
   end
+
+#  def query
+#    conds = Hash.new
+#    p params
+#    params[:device].each do |key, value|
+#      conds.store(key, value) unless value.blank?
+#    end
+#    p conds
+#    if !params[:date][:start_using_time_from].blank?
+#      conds.store("start_using_time>=?",Date.parse(params[:date][:start_using_time_from]))
+#    end
+#    if !params[:date][:start_using_time_to].blank?
+#      conds.store("start_using_time<=?",Date.parse(params[:date][:start_using_time_to]))
+#    end
+#    if !params[:date][:end_server_time_from].blank?
+#      conds.store("end_server_time>=?",Date.parse(params[:date][:end_server_time_from]))
+#    end
+#    if !params[:date][:end_server_time_to].blank?
+#      conds.store("end_server_time>=?",Date.parse(params[:date][:end_server_time_to]))
+#    end
+#p conds
+##    conds["department"]=departments.names if conds["department"].blank?
+#    @devices = Device.paginate(:all, :conditions=>conds,:per_page => 20, :page => params[:page])
+#
+#    render :action => "index"
+#  end
   
   #获取将要新增设备的类型
   def select_type
-    @device_type=DeviceType.find_by_name(params[:device_type]).table
-    @device_detail = Object.const_get(@device_type.classify).new
+    @device_type = DeviceType.find_by_name(params[:device_type]).table
+    @device_detail = Object.const_get(@device_type.classify).new(params[@device_type])
   end
 
   def batch_input
@@ -209,32 +264,30 @@ class DevicesController < ApplicationController
     #根据下拉列表中的设备类型创建一个设备详情表
     @device_detail = Object.const_get(session[:device_type].classify).new(session[:device_detail])
 
-
     unless [@device, @device_detail].map(&:valid?).include?(false)
       render :action => "select_departments"
     else
       @provider=Provider.find(:all)
       render  :action => :batch_input
     end
-
   end
 
   def batch_create
     @devices=[]
     params[:department_ids].each do |id|
-      session[:batch_device][:no] = device_no
       session[:batch_device][:department]=Department.find(id).name
-      @device = Device.new(session[:batch_device])
-      @device.batch=true
-      
-      #根据下拉列表中的设备类型创建一个设备详情表
-      @device_detail = Object.const_get(session[:device_type].classify).new(session[:device_detail])
-      
-      @device.detail = @device_detail
-      
       qty = params["qty_#{id}"].to_i
-      qty.times{|i| @device.save! }
+      qty.times do |i|
+        session[:batch_device][:no] = device_no
+        @device = Device.new(session[:batch_device])
+        @device.batch=true
+      
+        #根据下拉列表中的设备类型创建一个设备详情表
+        @device_detail = Object.const_get(session[:device_type].classify).new(session[:device_detail])
+        @device.detail = @device_detail
         
+        @device.save!
+      end
       @devices<<[@device,qty]
     end
     
@@ -279,8 +332,6 @@ class DevicesController < ApplicationController
       1
     end
   end
-
-  
   
   def clear_batch_session
     session[:batch_device]=nil

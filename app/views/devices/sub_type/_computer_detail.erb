@@ -1,0 +1,51 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :cpu,"CPU" %><br />
+          <%= f.text_field :cpu,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :cpu_qty,"CPU数量(块)" %><br />
+          <%= f.text_field :cpu_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :mem,"内存大小(MB)" %><br />
+          <%= f.text_field :mem,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :disk,"单个磁盘大小(GB)" %><br />
+          <%= f.text_field :disk,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :disk_qty,"磁盘数量(块)" %><br />
+          <%= f.text_field :disk_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :nic ,"网卡型号"%><br />
+          <%= f.text_field :nic ,:size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :nic_qty,"网卡数量(块)" %><br />
+          <%= f.text_field :nic_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :display,"显示器" %><br />
+          <%= f.text_field :display,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <%= f.label :memo,"备注" %><br />
+          <%= f.text_area :memo,:rows=>"5",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

@@ -78,3 +78,6 @@ Rails::Initializer.run do |config|
   
 end
 require "rubygems"
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.uncountable("ups")
+end

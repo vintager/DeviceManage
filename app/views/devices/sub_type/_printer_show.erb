@@ -1,0 +1,41 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :printer_type,"打印机类型" %><br />
+          <%= f.select :printer_type,["激光","喷墨","热敏","点阵"],:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :printer_method,"打印方式" %><br />
+          <%= f.select :printer_method,["单页","连续","单页/连续"],:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :interface,"接口" %><br />
+           <%= f.select :interface,["USB","串口","并口"],:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :color,"是否为彩色" %><br />
+         <%= f.select :color,["是","否"],:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :net_module,"是否有网络模块" %><br />
+          <%= f.select :net_module,["是","否"],:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :duplex_printing,"支持双面打印" %><br />
+           <%= f.select :duplex_printing,["是","否"],:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

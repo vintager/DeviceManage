@@ -1,0 +1,41 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :max_capacity,"最大存储容量(GB)" %><br />
+          <%= f.text_field :max_capacity,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :slot_qty,"插槽数量(个)" %><br />
+          <%= f.text_field :slot_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :interface,"数据接口类型" %><br />
+          <%= f.select :interface,["光纤","SCSI"],:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :baud_rate,"传输速率(Mbps)" %><br />
+          <%= f.text_field :baud_rate,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :cache,"高速缓存(MB)" %><br />
+          <%= f.text_field :cache,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :mtbf,"平均故障间隔时间(小时)" %><br />
+          <%= f.text_field :mtbf,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

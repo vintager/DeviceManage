@@ -1,0 +1,70 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :switch_type,"交换机类型" %><br />
+          <%= f.select :switch_type, ["局域网交换机","光纤交换机","ATM交换机"],:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :layer,'层数' %><br />
+          <%= f.select :layer, ["二层","三层","四层"],:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :modularization,'是否模块化' %><br />
+          <%= f.select :modularization, ["是","否"],:size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :total_backplane_bandwidth,"背板带宽(Mbps)" %><br />
+          <%= f.text_field :total_backplane_bandwidth,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :mem,"内存(MB)" %><br />
+          <%= f.text_field :mem,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :vlan,'是否支持VLAN' %><br />
+          <%= f.select :vlan, ["是","否"],:size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :port_type ,"端口类型"%><br />
+          <%= f.select :port_type, ["RJ-45","光纤","BNC","ATM"],:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :port_rate, "端口速率(Mbps)"%><br />
+          <%= f.text_field :port_rate ,:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :port_qty, "端口数量(个)"%><br />
+          <%= f.text_field :port_qty,:size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :power_module_qty ,"电源模块数量(个)"%><br />
+          <%= f.text_field :power_module_qty,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :slot_qty, "插槽数量(个)"%><br />
+          <%= f.text_field :slot_qty ,:size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :stack, "可否堆叠"%><br />
+          <%= f.select :stack, ["是","否"],:size=>"25"%>
+
+        </td>
+      </tr>
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

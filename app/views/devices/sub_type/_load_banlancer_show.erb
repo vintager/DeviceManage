@@ -1,0 +1,42 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :mem,"内存(MB)" %><br />
+          <%= f.select :mem, ["局域网交换机","光纤交换机","ATM交换机"],:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :layer,'层数' %><br />
+          <%= f.select :layer, ["四层","七层"],:size=>"25", :readonly => "true"%>
+        </td>
+        <td>
+          <%= f.label :port_qty,'端口数量(个)' %><br />
+          <%= f.select :port_qty, ["是","否"],:size=>"25", :readonly => "true"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :cpu,"CPU" %><br />
+          <%= f.text_field :cpu,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :cpu_qty,"CPU数量(个)" %><br />
+          <%= f.text_field :cpu_qty,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :power_module_qty, "电源模块数量(个)"%><br />
+          <%= f.text_field :power_module_qty,:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

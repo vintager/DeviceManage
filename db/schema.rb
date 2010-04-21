@@ -9,7 +9,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100408025859) do
+ActiveRecord::Schema.define(:version => 20100420034126) do
+
+  create_table "air_conditions", :force => true do |t|
+    t.integer  "voltage"
+    t.integer  "power"
+    t.integer  "cooling_capacity"
+    t.string   "air_supply_method"
+    t.string   "heating_method"
+    t.string   "humidity_method"
+    t.integer  "air_output"
+    t.integer  "noises"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "atms", :force => true do |t|
+    t.string   "through_the_wall"
+    t.string   "deposit_module"
+    t.string   "cash_box_qty"
+    t.string   "touch_screen"
+    t.string   "system"
+    t.string   "monitor"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_readers", :force => true do |t|
+    t.string   "card_type"
+    t.string   "read_write"
+    t.string   "interface"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "computer_details", :force => true do |t|
     t.string   "cpu"
@@ -19,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20100408025859) do
     t.string   "nic"
     t.integer  "nic_qty"
     t.integer  "mem"
-    t.text     "memo"
     t.text     "display"
+    t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +95,82 @@ ActiveRecord::Schema.define(:version => 20100408025859) do
     t.datetime "updated_at"
   end
 
+  create_table "disk_arrays", :force => true do |t|
+    t.integer  "max_capacity"
+    t.integer  "slot_qty"
+    t.string   "interface"
+    t.integer  "mtbf"
+    t.integer  "baud_rate"
+    t.integer  "cache"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees", :force => true do |t|
+    t.string   "name"
+    t.integer  "manager_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "firewalls", :force => true do |t|
+    t.integer  "port_qty"
+    t.integer  "user_qty"
+    t.string   "vpn"
+    t.integer  "security_filtering"
+    t.integer  "throughput"
+    t.integer  "max_client"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "generators", :force => true do |t|
+    t.integer  "voltage"
+    t.integer  "power"
+    t.string   "fuel_type"
+    t.integer  "discharge_time"
+    t.integer  "oil_capacity"
+    t.string   "starting_method"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "load_banlancers", :force => true do |t|
+    t.integer  "mem"
+    t.integer  "port_qty"
+    t.string   "cpu"
+    t.integer  "cpu_qty"
+    t.integer  "power_module_qty"
+    t.string   "layer"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pin_pads", :force => true do |t|
+    t.string   "interface"
+    t.string   "voice"
+    t.string   "anti_peep_cover"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "printers", :force => true do |t|
+    t.string   "printer_method"
+    t.string   "printer_type"
+    t.string   "color"
+    t.string   "interface"
+    t.string   "net_module"
+    t.string   "duplex_printing"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "providers", :force => true do |t|
     t.string   "name"
     t.string   "addr"
@@ -69,6 +180,21 @@ ActiveRecord::Schema.define(:version => 20100408025859) do
     t.datetime "updated_at"
     t.string   "fault_rate"
     t.string   "fix_on_time_rate"
+  end
+
+  create_table "routers", :force => true do |t|
+    t.integer  "mem"
+    t.integer  "total_backplane_bandwidth"
+    t.string   "modularization"
+    t.integer  "wan_port_qty"
+    t.integer  "lan_port_qty"
+    t.integer  "power_module_qty"
+    t.integer  "slot_qty"
+    t.string   "vpn"
+    t.string   "qos"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "status_changes", :force => true do |t|
@@ -83,10 +209,38 @@ ActiveRecord::Schema.define(:version => 20100408025859) do
   end
 
   create_table "switches", :force => true do |t|
-    t.integer  "port"
-    t.integer  "layer"
-    t.integer  "speed"
-    t.integer  "back_speed"
+    t.string   "switch_type"
+    t.integer  "mem"
+    t.integer  "total_backplane_bandwidth"
+    t.string   "modularization"
+    t.string   "port_type"
+    t.integer  "port_rate"
+    t.integer  "port_qty"
+    t.string   "layer"
+    t.string   "vlan"
+    t.integer  "power_module_qty"
+    t.integer  "slot_qty"
+    t.string   "stack"
+    t.text     "memo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ups", :force => true do |t|
+    t.integer  "rated_capacity"
+    t.integer  "output_voltage"
+    t.integer  "input_voltage"
+    t.integer  "voltage_range"
+    t.integer  "backup_time"
+    t.integer  "transition_time"
+    t.string   "ups_type"
+    t.integer  "link_qty"
+    t.integer  "battery_voltage"
+    t.integer  "battery_capacity"
+    t.string   "battery_model"
+    t.string   "battery_brand"
+    t.integer  "battery_qty_per_group"
+    t.integer  "battery_group"
     t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"

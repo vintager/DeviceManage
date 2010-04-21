@@ -1,0 +1,52 @@
+
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :voltage,"电压(伏)" %><br />
+          <%= f.text_field :voltage,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :power,"功率(KW)" %><br />
+          <%= f.text_field :power,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :cooling_capacity,"制冷量(KW)" %><br />
+          <%= f.text_field :cooling_capacity,:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :air_supply_method,"送风方式" %><br />
+          <%= f.select :air_supply_method,["上送风","下送风","上下送风"], :size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :heating_method,"加热方式" %><br />
+          <%= f.text_field :heating_method,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :humidity_method,"加湿方式" %><br />
+          <%= f.text_field :humidity_method,:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :air_output,"风量(立方米/秒)" %><br />
+          <%= f.text_field :air_output,:size=>"25", :readonly => "true" %>
+        </td>
+        <td>
+          <%= f.label :noises,"噪音(dB)" %><br />
+          <%= f.text_field :noises,:size=>"25", :readonly => "true" %>
+        </td>
+      </tr>
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

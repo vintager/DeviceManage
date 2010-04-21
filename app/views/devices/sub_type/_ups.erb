@@ -1,0 +1,81 @@
+<% fields_for(@device_detail) do |f| %>
+  <fieldset>
+    <legend>详细信息：</legend>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :rated_capacity,"额定容量(Ah)" %><br />
+          <%= f.text_field :rated_capacity, :size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :input_voltage,'输入电压(伏)' %><br />
+          <%= f.text_field :input_voltage, :size=>"25"%>
+        </td>
+        <td>
+          <%= f.label :voltage_range,'输入电压范围%' %><br />
+          <%= f.text_field :voltage_range, :size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :output_voltage,"输出电压(伏)" %><br />
+          <%= f.text_field :output_voltage,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :backup_time,"标称后备时间(小时)" %><br />
+          <%= f.text_field :backup_time,:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :transition_time,'转换时间(毫秒)' %><br />
+          <%= f.text_field :transition_time, :size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :ups_type ,"类型"%><br />
+          <%= f.select :ups_type, ["在线式","后备式"],:size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :link_qty, "并机数量(台)"%><br />
+          <%= f.text_field :link_qty, :size=>"25"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :battery_brand,"电池品牌" %><br />
+          <%= f.text_field :battery_brand, :size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :battery_model,"电池型号" %><br />
+          <%= f.text_field :battery_model, :size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :battery_capacity,"单块电池容量(Ah)" %><br />
+          <%= f.text_field :battery_capacity, :size=>"25" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :battery_voltage,"单块电池电压(伏)" %><br />
+          <%= f.text_field :battery_voltage, :size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :battery_qty_per_group,"每组电池数量(块)" %><br />
+          <%= f.text_field :battery_qty_per_group, :size=>"25" %>
+        </td>
+        <td>
+          <%= f.label :battery_group,"电池组数(组)" %><br />
+          <%= f.text_field :battery_group, :size=>"25" %>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td  colspan="3">
+          <%= f.label :memo,"备注" %> <br />
+          <%= f.text_area :memo,:rows=>"10",:cols=>"70" %>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+<% end %>

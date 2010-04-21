@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
+        flash[:notice] = '用户添加成功！'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
+        flash[:notice] = '用户信息修改成功！'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if session[:user_id]==@user.id
-      flash[:notice] = 'Can not remove current user!'
+      flash[:notice] = '不能删除当前用户！'
     else
       @user.destroy
     end
@@ -112,7 +112,7 @@ class UsersController < ApplicationController
     if @user then
       respond_to do |format|
         if @user.update_attributes(params[:user])
-          flash[:notice] = "User was successfully updated."
+          flash[:notice] = "用户密码修改成功！"
           format.html { redirect_to(@user) }
           format.xml  { head :ok }
         else

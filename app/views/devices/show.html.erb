@@ -68,7 +68,7 @@
   <br/>
 
   <div id="device_detail">
-    <%= render :partial => @device_type+"_show",:object=>@device_detail %>
+    <%= render :partial =>  "devices\/sub_type\/#{@device_type}_show",:object=>@device_detail %>
   </div>
 <% end %>
 

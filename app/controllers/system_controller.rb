@@ -8,6 +8,14 @@ class SystemController < ApplicationController
     zgyz=Department.create(:name=>"中国邮政集团公司", :address=>"北京市西城区宣武门西大街131号")
     qh=Department.create(:name=>"青海省邮政公司", :parent_id=>zgyz.id, :address=>"西宁市五四西路36号")
 
+    Department.create(:name=>"西宁市邮政局", :parent_id=>qh.id, :address=>"西宁市冷湖路北段7号")
+    Department.create(:name=>"青海省邮政信息技术局", :parent_id=>qh.id, :address=>"西宁市五四西路36号")
+    Department.create(:name=>"青海省邮政商函公司", :parent_id=>qh.id, :address=>"西宁市五四西路36号")
+    Department.create(:name=>"青海省邮票公司", :parent_id=>qh.id, :address=>"西宁市五四西路36号")
+    Department.create(:name=>"青海省邮政运输局", :parent_id=>qh.id, :address=>"西宁市冷互助中路")
+    Department.create(:name=>"青海省速递物流公司", :parent_id=>qh.id, :address=>"西宁市长江路93号")
+    Department.create(:name=>"青海省邮政电子商务局", :parent_id=>qh.id, :address=>"西宁市五四西路36号")
+
     xn=Department.create(:name=>"西宁市邮政局", :parent_id=>qh.id, :address=>"西宁市冷湖路北段7号")
     Department.create(:name=>"城东区邮政局", :parent_id=>xn.id, :address=>"西宁市互助路")
     Department.create(:name=>"城西区邮政局", :parent_id=>xn.id, :address=>"西宁市新宁路")
@@ -56,15 +64,13 @@ class SystemController < ApplicationController
 
     DeviceType.create(:name=>"路由器",:table=>"router",:parent_id=>network.id)
     DeviceType.create(:name=>"交换机",:table=>"switch",:parent_id=>network.id)
-    DeviceType.create(:name=>"ATM交换机",:table=>"atm_switch",:parent_id=>network.id)
     DeviceType.create(:name=>"防火墙",:table=>"firewall",:parent_id=>network.id)
     DeviceType.create(:name=>"负载均衡器",:table=>"load_banlancer",:parent_id=>network.id)
-    DeviceType.create(:name=>"光纤交换机",:table=>"fc_switch",:parent_id=>network.id)
 
     DeviceType.create(:name=>"自动柜员机",:table=>"atm",:parent_id=>asscessory.id)
     DeviceType.create(:name=>"打印机",:table=>"printer",:parent_id=>asscessory.id)
     DeviceType.create(:name=>"刷卡器",:table=>"card_reader",:parent_id=>asscessory.id)
-    DeviceType.create(:name=>"密码键盘",:table=>"pinpad",:parent_id=>asscessory.id)
+    DeviceType.create(:name=>"密码键盘",:table=>"pin_pad",:parent_id=>asscessory.id)
     DeviceType.create(:name=>"磁盘阵列",:table=>"disk_array",:parent_id=>asscessory.id)
 
     DeviceType.create(:name=>"空调",:table=>"air_condition",:parent_id=>support.id)
