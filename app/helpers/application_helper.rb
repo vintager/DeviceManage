@@ -48,7 +48,7 @@ module ApplicationHelper
   end
   #返回名字数组
   def names(arr)
-    arr.map{|i| i.name}
+    arr.map(&:name)
   end
   #取出数据库表中的设备类型
   def device_types

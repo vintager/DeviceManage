@@ -97,8 +97,13 @@ class DepartmentsController < ApplicationController
       conds.store(key, value) unless value.blank?
     end
 
-    @departments = array_paginate(Department.find(:all, :conditions=>find_like(conds).to_s)&departments,20)
-#    @departments = Department.paginate(:all, :conditions=>find_like(conds).to_s,:per_page => 20, :page => params[:page])
+    unless params[:parent_name].blank?
+       parent_id = Department.find(:all,:conditions => [ "name like ? ","%"+params[:parent_name]+"%"]).map(&:id)
+    end
+    deps = Department.find(:all, :conditions=>find_like(conds).to_s)&departments
+    deps.delete_if{ |i| !parent_id.include?(i.parent_id)}
+
+    @departments = array_paginate(deps,20)
     
     render :action => "index"
   end

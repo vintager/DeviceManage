@@ -79,6 +79,6 @@ end
 
 class Array
   def names
-    self.map { |i| i.name }
+    self.map(&:name)
   end
 end

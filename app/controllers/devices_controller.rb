@@ -195,52 +195,15 @@ class DevicesController < ApplicationController
         conds<<value
       end
     end
-    if !params[:date][:start_using_time_from].blank?
-      conds[0] = conds[0]+" and start_using_time >= ?"
-      conds << Date.parse(params[:date][:start_using_time_from])
-    end
-    if !params[:date][:start_using_time_from].blank?
-      conds[0] = conds[0]+" and start_using_time <= ?"
-      conds << Date.parse(params[:date][:start_using_time_to])
-    end
-    if !params[:date][:start_using_time_from].blank?
-      conds[0] = conds[0]+" and end_server_time >= ?"
-      conds << Date.parse(params[:date][:end_server_time_from])
-    end
-    if !params[:date][:start_using_time_from].blank?
-      conds[0] = conds[0]+" and end_server_time >= ?"
-      conds << Date.parse(params[:date][:end_server_time_to])
-    end
+
+    add_condition(conds,"acquisition_time>=",params[:date][:acquisition_time_from])
+    add_condition(conds,"acquisition_time<=",params[:date][:acquisition_time_to])
+    add_condition(conds,"end_server_time>=",params[:date][:end_server_time_from])
+    add_condition(conds,"end_server_time<=",params[:date][:end_server_time_to])
     @devices = Device.paginate(:all, :conditions=>conds,:per_page => 20, :page => params[:page])
     
     render :action => "index"
   end
-
-#  def query
-#    conds = Hash.new
-#    p params
-#    params[:device].each do |key, value|
-#      conds.store(key, value) unless value.blank?
-#    end
-#    p conds
-#    if !params[:date][:start_using_time_from].blank?
-#      conds.store("start_using_time>=?",Date.parse(params[:date][:start_using_time_from]))
-#    end
-#    if !params[:date][:start_using_time_to].blank?
-#      conds.store("start_using_time<=?",Date.parse(params[:date][:start_using_time_to]))
-#    end
-#    if !params[:date][:end_server_time_from].blank?
-#      conds.store("end_server_time>=?",Date.parse(params[:date][:end_server_time_from]))
-#    end
-#    if !params[:date][:end_server_time_to].blank?
-#      conds.store("end_server_time>=?",Date.parse(params[:date][:end_server_time_to]))
-#    end
-#p conds
-##    conds["department"]=departments.names if conds["department"].blank?
-#    @devices = Device.paginate(:all, :conditions=>conds,:per_page => 20, :page => params[:page])
-#
-#    render :action => "index"
-#  end
   
   #获取将要新增设备的类型
   def select_type
@@ -312,7 +275,7 @@ class DevicesController < ApplicationController
   private
   def find_detail
     @device = Device.find(params[:id])  #根据设备id值查找设备
-    @device_type=@device.detail_type.underscore
+    @device_type = DeviceType.find_by_name(@device.device_type).table
     @device_detail=@device.detail
   end
 
@@ -337,6 +300,13 @@ class DevicesController < ApplicationController
     session[:batch_device]=nil
     session[:device_detail]=nil
     session[:device_type]=nil
+  end
+
+  def add_condition(conds,condition, value)
+    if !value.blank?
+      conds[0] = conds[0]+" and #{condition}  ?"
+      conds << Date.parse(value)
+    end
   end
 end
 

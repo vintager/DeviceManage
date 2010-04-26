@@ -12,6 +12,14 @@
     <%= f.select :parent, parent_and_departments.names %>
   </p>
   <p>
+    <%= f.label :contact,"联系人" %><br />
+    <%= f.text_field :contact %>
+  </p>
+  <p>
+    <%= f.label :phone ,"联系电话"%><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
     <%= f.label "地址" %><br />
     <%= f.text_field :address %>
   </p>

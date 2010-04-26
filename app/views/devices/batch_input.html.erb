@@ -32,8 +32,8 @@
             <%= f.select :status,["未领用"] %>
         </td>
         <td>
-          <%= f.label :start_using_time,"购置时间" %><br />
-          <%= f.text_field :start_using_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()"  %>
+          <%= f.label :acquisition_time,"购置时间" %><br />
+          <%= f.text_field :acquisition_time,:class=>"Wdate",:size=>"10",:value=>Time.now.strftime("%Y-%m-%d"),:onclick=>"WdatePicker()"  %>
         </td>
         <td>
           <%= f.label :end_server_time,"维保到期日" %><br />

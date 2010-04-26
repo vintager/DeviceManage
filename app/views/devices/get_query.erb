@@ -52,19 +52,19 @@
           </td>
 
         </tr>
-        <% fields_for(@time_range) do |f| %>
+        <% fields_for(@time_range) do |ff| %>
           <tr>
             <td colspan="2">
-              <%= f.label "设备购置日" %>
-              <%= f.text_field :start_using_time_from,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
-              <%= f.label "到" %>
-              <%= f.text_field :start_using_time_to,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
+              <%= ff.label "设备购置日" %>
+              <%= ff.text_field :acquisition_time_from,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
+              <%= ff.label "到" %>
+              <%= ff.text_field :acquisition_time_to,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
             </td>
             <td colspan="2">
-              <%= f.label "维保到期日" %>
-              <%= f.text_field :end_server_time_from,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
-              <%= f.label "到" %>
-              <%= f.text_field :end_server_time_to,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
+              <%= ff.label "维保到期日" %>
+              <%= ff.text_field :end_server_time_from,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
+              <%= ff.label "到" %>
+              <%= ff.text_field :end_server_time_to,:class=>"Wdate",:size=>"10",:value=>"",:onclick=>"WdatePicker()"  %>
             </td>
           </tr>
         <% end %>

@@ -3,6 +3,8 @@ class Createtables < ActiveRecord::Migration
     create_table "departments", :force => true do |t|
       t.string   "name"
       t.integer  "parent_id"
+      t.string   "contact"
+      t.string   "phone"
       t.string   "address"
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -24,24 +26,15 @@ class Createtables < ActiveRecord::Migration
       t.string   "model"
       t.string   "admin"
       t.string   "department"
-      t.date     "start_using_time"
+      t.date     "acquisition_time"
       t.date     "end_server_time"
       t.string   "status"
       t.integer  "detail_id"
-      t.string   "detail_type"
       t.string   "device_provider"
       t.string   "service_provider"
       t.datetime "created_at"
       t.datetime "updated_at"
     end
-
-    create_table "employees", :force => true do |t|
-      t.string   "name"
-      t.integer  "manager_id"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
-
 
     create_table "providers", :force => true do |t|
       t.string   "name"
@@ -83,7 +76,6 @@ class Createtables < ActiveRecord::Migration
   def self.down
     drop_table :departments
     drop_table :device_types
-    drop_table :employees
     drop_table :providers
     drop_table :status_changes
     drop_table :users

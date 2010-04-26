@@ -1,6 +1,6 @@
 class MaintainController < ApplicationController
   def index
-    @device_ids=StatusChange.find_by_sql("select distinct device_id from status_changes where status='维修'").map { |i| i.device_id }
+    @device_ids=StatusChange.find_by_sql("select distinct device_id from status_changes where status='维修'").map(&:device_id)
     device_maintain_log = []
     @device_ids.each do |device_id|
       device_key=Device.find_by_no(device_id)
